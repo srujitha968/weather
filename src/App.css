@@ -69,7 +69,10 @@ input{
     height: 98%;
   }
   #con{
-    width: 86%;
+    width: 96%;
+  }
+  .third{
+    width:96%;
   }
   input{
     width: 50%;
