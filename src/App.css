@@ -66,6 +66,9 @@ input{
     width: 98%;
     height: 98%;
   }
+  #con{
+    width: 86%;
+  }
   input{
     width: 50%;
     height: 30px;
