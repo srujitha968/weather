@@ -4,10 +4,11 @@ import './App.css'
 
 function App() {
   const [city, setCity] = useState('')
-  const [curr, setCurr] = useState('')
+  const [current, setCurrent] = useState('')  /** Current means current temperature value */
   const [icon, setIcon] = useState('')
   const [wind, setWind] = useState('')
-  const [hum, setHum] = useState('')
+  const [humidity, setHumidity] = useState('')
+  // Here 0 is the starting number of the week i.e today & 1 means tomorrow like that
   const [date0, setdate0] = useState('')
   const [temp0, setTemp0] = useState('')
   const [icon0, setIcon0] = useState('')
@@ -58,39 +59,41 @@ function App() {
       )
     axios.get(`https://api.weatherapi.com/v1/current.json?key=36d1b7c23cfd4c74b6e51847253101&q=${city}`)
       .then((res) => {
-        setCurr(`Temperature is ${res.data.current.temp_c}\u00B0C / ${res.data.current.temp_f}\u00B0F`)
+        setCurrent(`Temperature is ${res.data.current.temp_c}\u00B0C / ${res.data.current.temp_f}\u00B0F`)
         setIcon(res.data.current.condition.icon)
         setWind(` Wind speed is ${res.data.current.wind_kph} km/hr`)
-        setHum(`Humidity is ${res.data.current.humidity}%`)
+        setHumidity(`Humidity is ${res.data.current.humidity}%`)
       })
   }
-  const val = parseFloat(curr.split(" ")[2]);
+  // For changing background-image
+  const temperature = parseFloat(current.split(" ")[2]);
   const style = {
-    '--bg-image': val>29 ? 'url("https://media.istockphoto.com/id/1349387823/photo/small-light-fluffy-clouds-in-blue-sky-in-autumn.jpg?s=612x612&w=0&k=20&c=jTFlDqIduTvsAz7_-U27Ih62OyHunsowVba-OYptv0Y=")' : 
-              'url("https://media.istockphoto.com/id/615116338/photo/stormy-clouds-for-background.jpg?s=612x612&w=0&k=20&c=uFwhUflrYkLMrQ10feAa_UmzsHas78gLLVejZ2ccSB8=")',
+    '--bg-image': temperature > 29 ? 'url("https://media.istockphoto.com/id/1349387823/photo/small-light-fluffy-clouds-in-blue-sky-in-autumn.jpg?s=612x612&w=0&k=20&c=jTFlDqIduTvsAz7_-U27Ih62OyHunsowVba-OYptv0Y=")' :
+      'url("https://media.istockphoto.com/id/615116338/photo/stormy-clouds-for-background.jpg?s=612x612&w=0&k=20&c=uFwhUflrYkLMrQ10feAa_UmzsHas78gLLVejZ2ccSB8=")',
   };
+
   return (
     <>
       <div id="main">
         <div id="first"
-         style={{
-        ...style,
-        backgroundImage: 'var(--bg-image)',
-        backgroundSize: 'cover',
-      }}>
+          style={{
+            ...style,
+            backgroundImage: 'var(--bg-image)',
+            backgroundSize: 'cover',
+          }}>
           <h1>Weather Report</h1>
-          <input type='text' value={city} onChange={(e) => { setCity(e.target.value) }} placeholder='Enter your city'/>
+          <input type='text' value={city} onChange={(e) => { setCity(e.target.value) }} placeholder='Enter your city' />
           <button onClick={check}>weather</button>
           <h2>Today's Report</h2>
           <div id="first-one">
-            <h3>{curr}</h3>
+            <h3>{current}</h3>
             <img src={icon} />
           </div>
           <h3>{wind}</h3>
-          <h3>{hum}</h3>
+          <h3>{humidity}</h3>
           <div id="second">
             <h2 id="head">Weekly Report</h2>
-            <div id="con">
+            <div id="container">
               <div className="third">
                 <h3>{date0}</h3>
                 <img src={icon0} />
