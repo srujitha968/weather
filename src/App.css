@@ -64,9 +64,10 @@ input{
   }
   #first{
     width: 98%;
-    height: fit-content;
+    height: 98%;
   }
   input{
-    width: 70%;
+    width: 50%;
+    height: 30px;
   }
 }
