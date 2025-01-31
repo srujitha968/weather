@@ -58,7 +58,7 @@ function App() {
       )
     axios.get(`https://api.weatherapi.com/v1/current.json?key=36d1b7c23cfd4c74b6e51847253101&q=${city}`)
       .then((res) => {
-        setCurr(`Temp is ${res.data.current.temp_c}\u00B0C / ${res.data.current.temp_f}\u00B0F`)
+        setCurr(`Temperature is ${res.data.current.temp_c}\u00B0C / ${res.data.current.temp_f}\u00B0F`)
         setIcon(res.data.current.condition.icon)
         setWind(` Wind speed is ${res.data.current.wind_kph} km/hr`)
         setHum(`Humidity is ${res.data.current.humidity}%`)
